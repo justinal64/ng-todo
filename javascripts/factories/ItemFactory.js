@@ -19,6 +19,24 @@ app.factory("ItemFactory", function($q, $http, FIREBASE_CONFIG) {
         });
     };
 
-    return {getItemList: getItemList};
+    var postNewItem = function(newItem) {
+        return $q((resolve, reject)  => {
+            $http.post(`${FIREBASE_CONFIG.databaseURL}/items.json`,
+                    JSON.stringify({
+                        assignedTo: newItem.assignedTo,
+                        isCompleted: newItem.isCompleted,
+                        task: newItem.task
+                    })
+                )
+            .success((postResponse) => {
+                resolve(postResponse);
+            })
+            .error((postError) => {
+                reject(postError);
+            });
+        });
+    };
+
+    return {getItemList: getItemList, postNewItem: postNewItem};
 
 });
