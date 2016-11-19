@@ -35,4 +35,11 @@ app.controller("TodoCtrl", ($scope, ItemFactory) => {
         });
     };
 
+    $scope.deleteItem = function(itemId) {
+        console.log("You Deleted Me!");
+        ItemFactory.deleteItem(itemId).then(function(response) {
+            getItems();
+        });
+    };
+
 });
