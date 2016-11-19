@@ -14,6 +14,14 @@ app.config(function($routeProvider) {
             templateUrl: 'partials/item-new.html',
             controller: 'ItemNewCtrl'
         })
+        .when('/items/view/:id', { // colon means the value will change
+            templateUrl: 'partials/item-view.html',
+            controller: 'ItemViewCtrl'
+        })
+        .when('/items/edit/:id', {
+            templateUrl: 'partials/item-new.html',
+            controller: 'ItemEditCtrl'
+        })
         .otherwise('/items/list'); // This could be a 404 error...
 
 });
